@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Lato', sans-serif; /* Apply Lato globally */
+}
+
+h1,
+h2,
+h3,
+.playfair {
+  font-family: 'Playfair Display', serif; /* Apply Playfair Display for headers or special classes */
+}
+
+.playfair-bold {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+}
+
+.playfair-italic {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+}
+
+/* Global or specific ul styling */
+ul.custom-bullets li::marker {
+  content: '🌿 '; /* You can replace this with any Unicode character or emoji */
+  color: #84a98c; /* Set the color to match your theme */
+}
