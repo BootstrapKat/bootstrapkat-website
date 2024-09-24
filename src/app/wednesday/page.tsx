@@ -190,6 +190,7 @@ export default function WindDownWednesday() {
                   type="text"
                   name="request"
                   id="request"
+                  required
                   className="w-full p-2 border rounded-lg text-gray-800"
                 />
               </div>
