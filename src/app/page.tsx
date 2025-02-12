@@ -100,7 +100,7 @@ export default function Home() {
         </section>
 
         {/* Wind Down Wednesday Teaser (Banner Section) */}
-        {/* <section className="w-full bg-[#FEFBC4] text-[#3C2624] py-12 px-8 rounded-lg shadow-md text-center mb-12">
+        <section className="w-full bg-[#FEFBC4] text-[#3C2624] py-12 px-8 rounded-lg shadow-md text-center mb-12">
           <h2 className="text-3xl font-bold playfair mb-4 text-[#3C2624]">
             Wind Down Wednesday
           </h2>
@@ -115,7 +115,7 @@ export default function Home() {
           >
             Visit Wind Down Wednesday
           </Link>
-        </section> */}
+        </section>
       </div>
     </Layout>
   );
