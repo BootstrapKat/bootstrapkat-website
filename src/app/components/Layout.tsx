@@ -57,11 +57,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               Home
             </p>
           </Link>
-          {/* <Link href="/wednesday">
+          <Link href="/wednesday">
             <p className="text-[#CAD2C5] hover:text-[#84A98C] transition-colors duration-300 ease-in-out">
               Wind Down Wednesday
             </p>
-          </Link> */}
+          </Link>
           <Link href="/portfolio">
             <p className="text-[#CAD2C5] hover:text-[#84A98C] transition-colors duration-300 ease-in-out">
               Portfolio
