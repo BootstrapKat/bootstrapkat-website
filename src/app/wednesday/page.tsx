@@ -149,7 +149,7 @@ export default function WindDownWednesday() {
             </a>
           </p>
           <audio controls className="w-full mt-4">
-            <source src="WDW_Episode22_3-5-25.mp3" type="audio/mpeg" />
+            <source src="WDW_Episode22_3-5-25-website.mp3" type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
         </div>
