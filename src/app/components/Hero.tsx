@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function Hero() {
   return (
-    <section className="w-screen border-t border-b border-black relative">
+    <section className="w-screen border-b border-black relative">
       <div className="grid grid-cols-12 items-center h-auto">
         {/* QR Code Section (Hidden on Mobile & Tablet) */}
         <div className="hidden lg:flex col-span-3 flex-col items-center justify-center overflow-hidden">
@@ -16,7 +16,7 @@ export default function Hero() {
         </div>
 
         {/* Hero Text & Avatar Section */}
-        <div className="col-span-12 md:col-span-9 px-6 py-8 border-l border-black grid grid-cols-12 gap-4">
+        <div className="col-span-12 md:col-span-9 px-6 py-8 lg:border-l border-black grid grid-cols-12 gap-4">
           {/* Name + Avatar Row */}
           <div className="col-span-12 md:col-span-7 flex flex-col">
             <h1 className="text-3xl md:text-7xl">Bootstrap Kat</h1>
@@ -41,6 +41,8 @@ export default function Hero() {
             <li>• Known to disappear into the woods for a good hike.</li>
           </ul>
         </div>
+
+        <div className="border-t border-black col-span-12 pt-10"></div>
       </div>
 
       {/* Decorative Leaves - Hidden on Mobile & Tablet */}

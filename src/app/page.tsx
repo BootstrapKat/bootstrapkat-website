@@ -1,12 +1,16 @@
 import Layout from './components/Layout';
 import Hero from './components/Hero';
+import LinkTout from './components/LinkTout';
+import WindDownBanner from './components/WindDownBanner';
 
 export default function Home() {
   return (
     <Layout>
-      <main className="min-h-screen flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center lg:border-l lg:border-r border-x-black">
         <Hero />
-      </main>
+        <LinkTout />
+        <WindDownBanner />
+      </div>
     </Layout>
   );
 }

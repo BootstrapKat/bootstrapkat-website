@@ -8,10 +8,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex flex-col h-screen">
       {/* Navigation */}
       <header className="border-b border-black">
-        <div className="flex justify-between items-center px-6 md:px-12 py-4 border-b border-black">
+        <div className="flex justify-between items-center px-6 md:px-12 py-4">
           {/* Logo */}
           <Link href="/" className="text-3xl md:text-4xl">
             Bootstrap Kat
@@ -51,7 +51,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </header>
 
       {/* Page Content */}
-      <main className="flex-grow p-2 md:p-8">{children}</main>
+
+        <main className="flex-grow px-6 md:px-12 overflow-x-hidden">{children}</main>
 
       {/* Footer */}
       <footer className="border-t border-black text-center p-4">
