@@ -3,28 +3,20 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Lato', sans-serif; /* Apply Lato globally */
+  font-family: 'Courier Prime', monospace;
 }
 
 h1,
 h2,
-h3,
-.playfair {
-  font-family: 'Playfair Display', serif; /* Apply Playfair Display for headers or special classes */
+h3 {
+  font-family: 'Courier Prime', monospace; 
 }
 
-.playfair-bold {
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
+@keyframes fade-in-slow {
+  from { opacity: 0 }
+  to { opacity: 1 }
 }
 
-.playfair-italic {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-}
-
-/* Global or specific ul styling */
-ul.custom-bullets li::marker {
-  content: '🌿 '; /* You can replace this with any Unicode character or emoji */
-  color: #84a98c; /* Set the color to match your theme */
+.animate-fade-in-slow {
+  animation: fade-in-slow 1.2s ease-out both;
 }

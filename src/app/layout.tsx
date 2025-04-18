@@ -1,15 +1,9 @@
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
-import { Lato, Playfair_Display } from 'next/font/google';
+import { Courier_Prime } from 'next/font/google';
 import './globals.css';
 
-const lato = Lato({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  display: 'swap',
-});
-
-const playfair = Playfair_Display({
+// Setup Courier Prime font
+const courierPrime = Courier_Prime({
   subsets: ['latin'],
   weight: ['400', '700'],
   display: 'swap',
@@ -27,7 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`$lato.className} antialiased`}>{children}</body>
+      <body className={`${courierPrime.className} antialiased`}>
+        {children}
+      </body>
     </html>
   );
 }

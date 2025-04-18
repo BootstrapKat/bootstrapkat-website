@@ -1,128 +1,62 @@
-'use client';
-import { useState } from 'react';
-import Link from 'next/link';
-import { Lato, Playfair_Display } from 'next/font/google';
-
-// Load the fonts
-const lato = Lato({ subsets: ['latin'], weight: ['400', '700'] });
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-});
+"use client";
+import { useState } from "react";
+import Link from "next/link";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const closeMenu = () => {
-    setIsOpen(false);
-  };
+  const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <div className={`min-h-screen flex flex-col ${lato.className}`}>
+    <div className="flex flex-col h-screen">
       {/* Navigation */}
-      <header className="bg-[#354F52] p-4 flex justify-between items-center">
-        <a href="/">
-          <img
-            src="/logos/logo.png"
-            alt="Bootstrap Kat Logo"
-            className="h-16"
-          />
-        </a>
-        <button className="md:hidden" onClick={toggleMenu}>
-          {/* Hamburger Icon */}
-          <svg
-            className="w-6 h-6 text-[#CAD2C5]"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            ></path>
-          </svg>
-        </button>
+      <header className="border-b border-black [z-index:100]">
+        <div className="flex justify-between items-center px-6 md:px-12 py-4">
+          {/* Logo */}
+          <Link href="/" className="text-3xl md:text-4xl">
+            Bootstrap Kat
+          </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-6">
-          <Link href="/">
-            <p className="text-[#CAD2C5] hover:text-[#84A98C] transition-colors duration-300 ease-in-out">
-              Home
-            </p>
-          </Link>
-          <Link href="/wednesday">
-            <p className="text-[#CAD2C5] hover:text-[#84A98C] transition-colors duration-300 ease-in-out">
-              Wind Down Wednesday
-            </p>
-          </Link>
-          <Link href="/portfolio">
-            <p className="text-[#CAD2C5] hover:text-[#84A98C] transition-colors duration-300 ease-in-out">
-              Portfolio
-            </p>
-          </Link>
-        </nav>
-
-        {/* Mobile Drawer */}
-        <div
-          className={`fixed top-0 left-0 h-full w-64 bg-[#354F52] shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
-            isOpen ? 'translate-x-0' : '-translate-x-full'
-          }`}
-        >
-          <button onClick={closeMenu} className="p-4 text-[#CAD2C5]">
-            Close
-          </button>
-          <nav className="flex flex-col space-y-4 p-4">
-            <Link href="/">
-              <p
-                className="text-[#CAD2C5] hover:text-[#84A98C]"
-                onClick={closeMenu}
-              >
-                Home
-              </p>
-            </Link>
-            <Link href="/wednesday">
-              <p
-                className="text-[#CAD2C5] hover:text-[#84A98C]"
-                onClick={closeMenu}
-              >
-                Wind Down Wednesday
-              </p>
-            </Link>
-            <Link href="/portfolio">
-              <p
-                className="text-[#CAD2C5] hover:text-[#84A98C]"
-                onClick={closeMenu}
-              >
-                Portfolio
-              </p>
-            </Link>
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex space-x-12 text-xl">
+            <Link href="/" className="hover:underline">Home</Link>
+            <Link href="/portfolio" className="hover:underline">Portfolio</Link>
+            <Link href="/wednesday" className="hover:underline">Wednesday</Link>
           </nav>
+
+          {/* Mobile Toggle Button (SVG Arrow) */}
+          <button
+            className={`md:hidden transform transition-transform duration-300 ${
+              isOpen ? "rotate-180" : "rotate-0"
+            }`}
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
+          >
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </button>
         </div>
 
-        {/* Overlay */}
-        {isOpen && (
-          <div
-            className="fixed inset-0 bg-black opacity-50 z-40 transition-opacity duration-300"
-            onClick={closeMenu}
-          ></div>
-        )}
+        {/* Mobile Drawer (Slides Down) */}
+        <nav
+          className={`md:hidden flex flex-col items-center gap-4 text-xl bg-white w-full px-6 py-4 border-b border-black transition-all duration-300 ${
+            isOpen ? "opacity-100 max-h-40" : "opacity-0 max-h-0 overflow-hidden"
+          }`}
+        >
+          <Link href="/" onClick={() => setIsOpen(false)}>Home</Link>
+          <Link href="/portfolio" onClick={() => setIsOpen(false)}>Portfolio</Link>
+          <Link href="/wednesday" onClick={() => setIsOpen(false)}>Wednesday</Link>
+        </nav>
       </header>
 
       {/* Page Content */}
-      <main className="flex-grow p-2 md:p-8">{children}</main>
+
+        <main className="flex-grow overflow-x-hidden animate-fade-in-slow">{children}</main>
 
       {/* Footer */}
-      <footer className="bg-[#2F3E46] text-[#CAD2C5] p-4 text-center">
-        <p>
-          &copy; {new Date().getFullYear()} Bootstrap Kat | All Rights Reserved
-        </p>
+      <footer className="border-t border-black text-center p-4">
+        <p>&copy; {new Date().getFullYear()} Bootstrap Kat | All Rights Reserved</p>
       </footer>
     </div>
   );
