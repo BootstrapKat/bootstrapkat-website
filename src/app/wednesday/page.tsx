@@ -13,14 +13,9 @@ export default function WindDownWednesday() {
       setStatus('pending');
       setError(null);
 
-      const myForm = event.currentTarget;
-      const formData = new FormData(myForm);
-
-      // Convert FormData to URLSearchParams
+      const formData = new FormData(event.currentTarget);
       const formParams = new URLSearchParams();
-      formData.forEach((value, key) => {
-        formParams.append(key, value as string);
-      });
+      formData.forEach((value, key) => formParams.append(key, value as string));
 
       const res = await fetch('/__forms.html', {
         method: 'POST',
@@ -40,22 +35,14 @@ export default function WindDownWednesday() {
     }
   };
 
-  // Function to get the next Wednesday at 8:00 PM
   const getNextShowDate = () => {
     const now = new Date();
     const nextWednesday = new Date();
-
-    // Set to next Wednesday 8:00 PM
-    nextWednesday.setDate(
-      now.getDate() + ((3 + 7 - now.getDay()) % 7) // 3 corresponds to Wednesday
-    );
-    nextWednesday.setHours(20, 0, 0, 0); // Set time to 8:00 PM
-
-    // If we're already past 8:00 PM on Wednesday, move to the next Wednesday
+    nextWednesday.setDate(now.getDate() + ((3 + 7 - now.getDay()) % 7));
+    nextWednesday.setHours(20, 0, 0, 0);
     if (now.getDay() === 3 && now.getHours() >= 20) {
       nextWednesday.setDate(nextWednesday.getDate() + 7);
     }
-
     return nextWednesday;
   };
 
@@ -64,11 +51,8 @@ export default function WindDownWednesday() {
       const now = new Date().getTime();
       const nextShow = getNextShowDate().getTime();
       const distance = nextShow - now;
-
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      );
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
@@ -78,212 +62,88 @@ export default function WindDownWednesday() {
         setTimeRemaining(`${days}d ${hours}h ${minutes}m ${seconds}s`);
       }
     }, 1000);
-
     return () => clearInterval(interval);
   }, []);
 
   return (
     <Layout>
-      <div
-        role="main"
-        className="min-h-screen p-2 md:p-8 bg-[#FEFBC4] md:rounded-lg"
-      >
-        {/* Logo and Countdown Section */}
-        <div className="mb-8 flex flex-col md:flex-row items-center justify-between md:justify-center space-y-4 md:space-y-0 md:space-x-12">
-          {/* Show Logo */}
-          <div className="text-center">
-            <img
-              src="/wednesday.png"
-              alt="Wind Down Wednesday Logo"
-              className="mx-auto h-40 shadow-lg rounded-full border-4 border-[#9B6A9C]"
-            />
+      <main className="min-h-screen p-6 md:p-12">
+        {/* Intro */}
+        <section className="text-center max-w-3xl mx-auto mb-12">
+          <h1 className="text-5xl font-bold text-[#3C2624] mb-4">Wind Down Wednesday</h1>
+          <p className="text-lg text-[#4B3B39]">
+            A midweek exhale of sound — gentle tunes, curated covers, and audio cozy-core. Airs live every Wednesday at 8PM on{' '}
+            <span className="text-[#9B6A9C] font-semibold">WART 95.5 FM</span>.
+          </p>
+        </section>
+
+        {/* Countdown */}
+        <section className="text-center max-w-xl mx-auto mb-12">
+          <div className="bg-white/70 backdrop-blur-md border border-[#9B6A9C] p-6 rounded-lg shadow">
+            <h2 className="text-2xl font-bold text-[#3C2624] mb-2">Next Episode In:</h2>
+            <p className="text-xl text-[#9B6A9C] animate-pulse">🎧 {timeRemaining}</p>
           </div>
+        </section>
 
-          {/* Countdown to Next Episode */}
-          <div className="text-center md:text-left">
-            <h2 className="text-2xl md:text-3xl font-bold mb-2 text-[#3C2624]">
-              Next Episode in:
-            </h2>
-
-            {/* Countdown Timer */}
-            <p
-              className="text-xl text-[#9B6A9C] animate-pulse transition-all duration-500 ease-in-out transform scale-100 hover:scale-110"
-              aria-live="polite"
-            >
-              ⏳ {timeRemaining} ✨
-            </p>
-
-            {/* Styling the Countdown Timer */}
-            <style jsx>{`
-              .animate-pulse {
-                animation: pulse 2s infinite;
-              }
-
-              @keyframes pulse {
-                0% {
-                  transform: scale(1);
-                }
-                50% {
-                  transform: scale(1.05);
-                }
-                100% {
-                  transform: scale(1);
-                }
-              }
-            `}</style>
-          </div>
-        </div>
-
-        {/* Latest Episode Player */}
-        <div className="mb-8 bg-[#98A17A] p-6 rounded-lg shadow-md text-white">
-          <h2 className="text-3xl font-bold">Listen to the Latest Episode</h2>
+        {/* Episode Player */}
+        <section className="bg-[#EAEFDA] p-6 rounded-lg shadow-md text-[#2F3E46] max-w-4xl mx-auto mb-12">
+          <h2 className="text-2xl font-bold mb-2">Listen to the Latest Episode</h2>
           <p>
-            Previously aired on{' '}
-            <a
-              href="http://station.voscast.com/5530050e0a38b/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#FEFBC4] underline hover:text-[#9B6A9C]"
-            >
-              95.5 FM WART
+            Aired on{' '}
+            <a href="http://station.voscast.com/5530050e0a38b/" target="_blank" rel="noopener noreferrer" className="text-[#6700F9] underline hover:text-[#9B6A9C]">
+              WART 95.5 FM
             </a>
           </p>
-          <audio controls className="w-full mt-4">
+          <audio controls className="w-full mt-4 rounded-md shadow-inner">
             <source src="WDW_Episode22_3-5-25-website.mp3" type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
-        </div>
+        </section>
 
-        {/* Request Form with Background Image */}
-        <div
-          className="relative mb-8 p-6 rounded-lg shadow-md"
+        {/* Request Form */}
+        <section
+          className="relative mb-12 p-6 rounded-lg shadow-md max-w-4xl mx-auto"
           style={{
-            backgroundImage: "url('/www-bg.jpg')",
+            backgroundImage: "url('/wednesday.png')",
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
         >
-          {/* Semi-transparent overlay */}
-          <div className="absolute inset-0 bg-black bg-opacity-50 rounded-lg"></div>
-
-          {/* Form content on top of the overlay */}
+          <div className="absolute inset-0 bg-black bg-opacity-80 rounded-lg" />
           <div className="relative z-10 text-white">
             <h2 className="text-2xl font-bold">Make a Request</h2>
-            <p className="mb-4">
-              Dedications and suggestions that fit the Wind Down Wednesday vibe
-            </p>
+            <p className="mb-4">Dedications and suggestions that fit the Wind Down Wednesday vibe.</p>
             <form
               name="wind-down-wednesday-requests"
               onSubmit={handleFormSubmit}
               className="space-y-4"
             >
-              <input
-                type="hidden"
-                name="form-name"
-                value="wind-down-wednesday-requests"
-              />
+              <input type="hidden" name="form-name" value="wind-down-wednesday-requests" />
               <div>
-                <label htmlFor="request" className="block text-lg font-bold">
-                  Song Request
-                </label>
-                <input
-                  type="text"
-                  name="request"
-                  id="request"
-                  required
-                  className="w-full p-2 border rounded-lg text-gray-800"
-                />
+                <label htmlFor="request" className="block text-lg font-bold">Song Request</label>
+                <input type="text" name="request" id="request" required className="w-full p-2 border rounded-lg text-gray-800" />
               </div>
               <div>
-                <label htmlFor="name" className="block text-lg font-bold">
-                  Your Name (Optional)
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  className="w-full p-2 border rounded-lg text-gray-800"
-                />
+                <label htmlFor="name" className="block text-lg font-bold">Your Name (Optional)</label>
+                <input type="text" name="name" id="name" className="w-full p-2 border rounded-lg text-gray-800" />
               </div>
               <div>
-                <label htmlFor="email" className="block text-lg font-bold">
-                  Email (Optional)
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  className="w-full p-2 border rounded-lg text-gray-800"
-                />
+                <label htmlFor="email" className="block text-lg font-bold">Email (Optional)</label>
+                <input type="email" name="email" id="email" className="w-full p-2 border rounded-lg text-gray-800" />
               </div>
-
               <div>
-                <label htmlFor="note" className="block text-lg font-bold">
-                  Note (Optional)
-                </label>
-                <textarea
-                  name="note"
-                  id="note"
-                  className="w-full p-2 border rounded-lg text-gray-800"
-                ></textarea>
+                <label htmlFor="note" className="block text-lg font-bold">Note (Optional)</label>
+                <textarea name="note" id="note" className="w-full p-2 border rounded-lg text-gray-800" />
               </div>
-              <button
-                type="submit"
-                className="bg-[#3C2624] text-white py-2 px-4 rounded-lg shadow-lg hover:bg-[#9B6A9C] transition duration-300"
-              >
-                Submit Request
+              <button type="submit" className="bg-[#3C2624] text-white py-2 px-4 rounded-lg shadow-lg hover:bg-[#9B6A9C] transition duration-300">
+                Send it in 💌
               </button>
-              {status === 'ok' && (
-                <div className="alert alert-success flex">
-                  <SuccessIcon />
-                  Submitted!
-                </div>
-              )}
-              {status === 'error' && (
-                <div className="alert alert-error flex">
-                  <ErrorIcon />
-                  <div className="ml-2">{error}</div>
-                </div>
-              )}
+              {status === 'ok' && <div className="mt-2 text-green-300">Thanks for your request!</div>}
+              {status === 'error' && <div className="mt-2 text-red-300">Something went wrong. {error}</div>}
             </form>
           </div>
-        </div>
-      </div>
+        </section>
+      </main>
     </Layout>
-  );
-}
-
-function SuccessIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="stroke-current shrink-0 h-6 w-6"
-      fill="none"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-      />
-    </svg>
-  );
-}
-function ErrorIcon(success: any) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="stroke-current shrink-0 h-6 w-6"
-      fill="none"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-      />
-    </svg>
   );
 }

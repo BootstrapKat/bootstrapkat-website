@@ -23,9 +23,9 @@ export default function WindDownBanner() {
           alt="Decorative Leaves"
           width={526}
           height={418}
-          className="absolute bottom-0 right-0 z-[2]"
+          className="absolute bottom-16 right-0 z-[2]"
           style={{
-            width: "clamp(160px, 30vw, 480px)",
+            width: "clamp(160px, 30vw, 380px)",
             height: "auto",
           }}
         />

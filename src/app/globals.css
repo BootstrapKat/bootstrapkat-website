@@ -3,13 +3,20 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Courier Prime', monospace; /* Apply Courier Prime globally */
+  font-family: 'Courier Prime', monospace;
 }
 
 h1,
 h2,
 h3 {
-  font-family: 'Courier Prime', monospace; /* Ensure headers match */
+  font-family: 'Courier Prime', monospace; 
 }
 
-/* Remove or update any old Playfair classes if needed */
+@keyframes fade-in-slow {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+.animate-fade-in-slow {
+  animation: fade-in-slow 1.2s ease-out both;
+}

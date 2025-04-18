@@ -10,7 +10,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex flex-col h-screen">
       {/* Navigation */}
-      <header className="border-b border-black">
+      <header className="border-b border-black [z-index:100]">
         <div className="flex justify-between items-center px-6 md:px-12 py-4">
           {/* Logo */}
           <Link href="/" className="text-3xl md:text-4xl">
@@ -52,7 +52,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       {/* Page Content */}
 
-        <main className="flex-grow px-6 md:px-12 overflow-x-hidden">{children}</main>
+        <main className="flex-grow overflow-x-hidden animate-fade-in-slow">{children}</main>
 
       {/* Footer */}
       <footer className="border-t border-black text-center p-4">

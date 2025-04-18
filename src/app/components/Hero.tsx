@@ -18,17 +18,17 @@ export default function Hero() {
         {/* Hero Text & Avatar Section */}
         <div className="col-span-12 md:col-span-9 px-6 py-8 lg:border-l border-black grid grid-cols-12 gap-4">
           {/* Name + Avatar Row */}
-          <div className="col-span-12 md:col-span-7 flex flex-col">
-            <h1 className="text-3xl md:text-7xl">Bootstrap Kat</h1>
-            <h2 className="text-3xl md:text-7xl">Front End<br/> Developer</h2>
+          <div className="col-span-12 md:col-span-6 flex flex-col">
+            <h1 className="text-3xl md:text-5xl lg:text-7xl">Bootstrap Kat</h1>
+            <h2 className="text-3xl md:text-5xl lg:text-7xl">Front End<br/> Developer</h2>
           </div>
           <div className="col-span-12 md:col-span-3 flex items-center justify-center md:justify-start relative z-[3]">
             <Image
-              src="/BootstrapKatAvatar.svg"
+              src="/BootstrapKatAvatar.png"
               alt="Avatar of Bootstrap Kat"
               width={210}
               height={274}
-              className="z-10"
+              className="z-10 block md:hidden lg:hidden"
             />
           </div>
 
@@ -42,7 +42,7 @@ export default function Hero() {
           </ul>
         </div>
 
-        <div className="border-t border-black col-span-12 pt-10"></div>
+        
       </div>
 
       {/* Decorative Leaves - Hidden on Mobile & Tablet */}
