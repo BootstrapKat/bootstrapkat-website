@@ -16,7 +16,7 @@ export default function WindDownBanner() {
         Visit Wind Down Wednesday
       </Link>
 
-      {/* Leaves should be inside the layout wrapper, not constrained to the section */}
+      {/* Decorative leaves positioned absolutely within the section */}
       <div className="hidden lg:block absolute inset-0 pointer-events-none">
         <Image
           src="/banner-leaves.png"
