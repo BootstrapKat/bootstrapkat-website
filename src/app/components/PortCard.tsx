@@ -20,7 +20,13 @@ export default function PortCard({
 }: PortCardProps) {
   return (
     <div className="border-black border p-6 flex flex-col md:flex-row md:items-start gap-4 transition-transform duration-300 ease-in-out hover:scale-[1.015] hover:shadow-md">
-      <Image src={logo} alt="" width={48} height={48} className="mb-4 md:mr-4" />
+      <Image
+        src={logo}
+        alt={`${title} logo`}
+        width={48}
+        height={48}
+        className="mb-4 md:mr-4"
+      />
       <div>
         <h3 className="text-xl font-bold">{title}</h3>
         <p className="mt-2">
